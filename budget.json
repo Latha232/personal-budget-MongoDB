@@ -2,31 +2,38 @@
     "myBudget": [
       {
         "title": "Eat out",
-        "budget": 25
+        "budget": 25,
+        "color":"#FF0000"
       },
       {
         "title": "Rent",
-        "budget": 375
+        "budget": 375,
+        "color":"#00FF00"
       },
       {
         "title": "Grocery",
-        "budget": 110
+        "budget": 110,
+        "color":"#0000FF"
       },
       {
         "title": "Transportation",
-        "budget": 50
+        "budget": 50,
+        "color":"#FFFFFF"
       },
       {
         "title": "Savings",
-        "budget": 100
+        "budget": 100,
+        "color":"#00FF00"
       },
       {
         "title": "fun",
-        "budget": 80
+        "budget": 80,
+        "color":"#0000FF"
       },
       {
         "title": "Healthcare",
-        "budget": 70
+        "budget": 70,
+        "color":"#00FF00"
       }
     ]
   }

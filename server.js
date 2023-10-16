@@ -19,7 +19,7 @@ app.get('/budget', (req,res) => {
                 myBudget.find().exec().then(data =>{
                 //console.log(data);
                 res.json(data);
-                mongoose.connection.close();
+               // mongoose.connection.close();
                 console.log("Connection is closed");
             })
             .catch(err =>{
@@ -31,25 +31,26 @@ app.get('/budget', (req,res) => {
     })
 });
 
-app.post('/budget', (req,res) => {
-    const add = new myBudget({ title: req.body.title, budget: req.body.budget, color: req.body.color});
-    mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true})
-        .then(() => {
-            console.log("Connected to Database");
-            myBudget.insertMany(add)
-                    .then((data) => {
-                    res.send('Added')
-                    mongoose.connection.close();
-                    console.log("Connection is closed");
-                    })
-                    .catch((connectionError) => {
-                    console.log(connectionError)
-                    })
-        })
-        .catch((connectionError) => {
-            console.log(connectionError);
-    })
-});
+    app.post('/budget', (req, res) => {
+        // Get the data from the request body
+        const { title, budget, color } = req.body;
+        const newBudgetItem = new myBudget({
+            title,
+            budget,
+            color,
+        });
+        newBudgetItem.save()
+            .then(savedItem => {
+                console.log('Budget item saved:', savedItem);
+                res.status(201).json({"success": "true","data": savedItem}); 
+            })
+            .catch(err => {
+                console.error('Error saving budget item:', err);
+                res.status(500).json({ error: 'Error saving budget item' });
+            });
+    });
+    
+
 
 app.listen(port, () => {
     console.log(`Example app listening at https://localhost:${port}`);
